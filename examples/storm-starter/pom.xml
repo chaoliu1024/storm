@@ -31,19 +31,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <!-- see comment below... This fixes an annoyance with intellij -->
-    <provided.scope>provided</provided.scope>
     <hbase.version>0.98.4-hadoop2</hbase.version>
   </properties>
-
-  <profiles>
-    <profile>
-        <id>intellij</id>
-        <properties>
-            <provided.scope>compile</provided.scope>
-        </properties>
-    </profile>
-  </profiles>
 
   <dependencies>
     <dependency>
@@ -82,25 +71,31 @@
         <groupId>org.apache.storm</groupId>
         <artifactId>storm-clojure</artifactId>
         <version>${project.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.storm</groupId>
+        <artifactId>storm-clojure-test</artifactId>
+        <version>${project.version}</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.storm</groupId>
+      <artifactId>storm-client</artifactId>
+      <version>${project.version}</version>
         <!--
           Use "provided" scope to keep storm out of the jar-with-dependencies
           For IntelliJ dev, intellij will load properly.
         -->
         <scope>${provided.scope}</scope>
     </dependency>
-    <dependency>
-      <groupId>org.apache.storm</groupId>
-      <artifactId>storm-core</artifactId>
-      <version>${project.version}</version>
-      <!--
-        Use "provided" scope to keep storm out of the jar-with-dependencies
-        For IntelliJ dev, intellij will load properly.
-      -->
-        <scope>${provided.scope}</scope>
-    </dependency>
       <dependency>
           <groupId>org.apache.storm</groupId>
-          <artifactId>storm-core</artifactId>
+          <artifactId>storm-client-misc</artifactId>
+          <version>${project.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.apache.storm</groupId>
+          <artifactId>storm-client</artifactId>
           <version>${project.version}</version>
           <type>test-jar</type>
           <scope>test</scope>
